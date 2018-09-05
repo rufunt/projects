@@ -3,14 +3,20 @@ class TasksController < ApplicationController
   
   
   def create
-    @task = @project.task.create(task_params)
+    @task = @project.tasks.create(task_params)
     redirect_to @project
+  end
+  
+  def destroy
+    @task = @project.tasks.find(params[:id])
+    if @task.destroy
+    end
   end
   
   private
   
   def set_project
-    @project = Project.find(params[project_id])
+    @project = Project.find(params[:project_id])
   end
   
   def task_params
