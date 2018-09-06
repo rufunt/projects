@@ -10,6 +10,9 @@ class TasksController < ApplicationController
   def destroy
     @task = @project.tasks.find(params[:id])
     if @task.destroy
+      flash[:success] = "Task was deleted."
+    else
+      flash[:error] = "Task was not deleted."
     end
   end
   
